@@ -11,6 +11,7 @@ import Trace.Hpc.Coveralls.Types
 data HpcCoverallsArgs = CmdMain
     { optExcludeDirs   :: [String]
     , argTestSuites    :: [String]
+    , optServiceName   :: Maybe String
     , optRepoToken     :: Maybe String
     , optDisplayReport :: Bool
     , optCurlVerbose   :: Bool
@@ -25,6 +26,7 @@ hpcCoverallsArgs = CmdMain
     , optCurlVerbose   = False             &= explicit                &= name "curl-verbose"   &= help "Enable curl verbose mode and prints the json response received from coveralls.io"
     , optDontSend      = False             &= explicit                &= name "dont-send"      &= help "Do not send the report to coveralls.io"
     , optCoverageMode  = AllowPartialLines &= explicit &= typ "MODE"  &= name "coverage-mode"  &= help "Coverage conversion mode: AllowPartialLines (default), StrictlyFullLines"
+    , optServiceName   = Nothing           &= explicit &= typ "TOKEN" &= name "service-name"   &= help "service-name (e.g. travis-pro)"
     , optRepoToken     = Nothing           &= explicit &= typ "TOKEN" &= name "repo-token"     &= help "Coveralls repo token"
     , argTestSuites    = []                &= typ "TEST-SUITES" &= args
     } &= summary ("hpc-coveralls-" ++ versionString version ++ ", (C) Guillaume Nargeot 2014-2015")
